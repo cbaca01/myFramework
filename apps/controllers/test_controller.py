@@ -28,9 +28,15 @@ class TestController(FlaskView):
 	# custom route
 	@route('/getall', strict_slashes=False)
 	def getAll(self):
-		params = {'id': 5}
-		results = self.__testModel.getPropertyByID(params)
-		# results = self.__testModel.getBooksRAW(params)
+		results = self.__testModel.getResults()
+		return jsonify(results)
+
+
+	# custom route
+	@route('/book_id/<int:bookID>', strict_slashes=False)
+	def getBookID(self, bookID):
+		params = {'id': bookID}
+		results = self.__testModel.getBooksRAW(params)
 		return jsonify(results)
 
 
